@@ -3,6 +3,9 @@
 import json
 import locale
 import sys
+import reports
+import os
+import emails
 
 
 def load_data(filename):
@@ -76,12 +79,15 @@ def cars_dict_to_table(car_data):
 def main(argv):
     """Process the JSON data and generate a full report out of it."""
     data = load_data("car_sales.json")
-    summary = process_data(data)
-    print(summary)
+    info = process_data(data)
+    summary = '<br/>'.join(info)
+    body = "\n".join(info)
     # TODO: turn this into a PDF report
-
+    reports.generate("/tmp/cars.pdf", "Car Sales Report", summary, cars_dict_to_table(data))
     # TODO: send the PDF report as an email attachment
-
+    content = emails.generate('automation@example.com', 'student@example.com',
+                              "Sales summary for last month", body, "/tmp/cars.pdf")
+    emails.send(content)
 
 if __name__ == "__main__":
     main(sys.argv)
