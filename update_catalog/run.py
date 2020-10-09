@@ -21,7 +21,7 @@ for filename in os.listdir(description_path):
         key_itr = 0
         for line in file.readlines():
             if 'lbs' in line:
-                fruits_dict[dict_keys[key_itr]] = line.strip().split()[0]
+                fruits_dict[dict_keys[key_itr]] = int(line.strip().split()[0])
                 key_itr += 1
             else:
                 fruits_dict[dict_keys[key_itr]] = line.strip()
@@ -31,9 +31,10 @@ for filename in os.listdir(description_path):
     fruits_dict['image_name'] = images_list[img_itr]
     img_itr += 1
 
+    # print(fruits_dict)
     file.close()
     # Posting the dictionary in the webpage using json format
     # response = requests.post(webpage_url, json=fruits_dict)
-    
+
 
 
