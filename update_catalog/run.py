@@ -5,7 +5,7 @@ import requests
 
 description_path = "supplier-data/descriptions/"
 image_path = "supplier-data/images/"
-webpage_url = "linux-instance-IP-Address/media/images/"
+url = "http://localhost/fruits/"
 dict_keys = ['name', 'weight', 'description', 'image_name']
 images_list = []
 
@@ -31,7 +31,7 @@ for filename in os.listdir(description_path):
     fruits_dict['image_name'] = images_list[img_itr]
     img_itr += 1
 
-    # print(fruits_dict)
+    print(fruits_dict)
     file.close()
     # Posting the dictionary in the webpage using json format
     # response = requests.post(webpage_url, json=fruits_dict)
