@@ -18,7 +18,7 @@ def generate_pdf(path):
 
     for filename in os.listdir(description_path):
         if filename.endswith('.txt'):
-            with open(path + filename,'r') as file:
+            with open(path + filename, 'r') as file:
                 line = file.readlines()
                 name = line[0].strip()
                 weight = line[1].strip()
