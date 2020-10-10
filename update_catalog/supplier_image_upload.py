@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-
-import os
+import os, sys
 import requests
 
+url = "http://localhost/upload/"
 path = "supplier-data/images/"
-webpage_url = "linux-instance-IP-Address/media/images/"
 
+images = os.listdir(path)
 
-for filename in os.listdir(path):
-    if filename.endswith('.jpeg'):
-        response = requests.post(webpage_url, file={'file': filename})
+for image in images:
+    if image.endswith(".jpeg"):
+        with open(path + image, 'rb') as opened:
+            response = requests.post(url, files={'file': opened})
